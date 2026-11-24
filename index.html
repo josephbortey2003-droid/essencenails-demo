@@ -4,21 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Essence Nail Lounge | Nails, Lashes &amp; Waxing in Worcester, MA</title>
-<meta name="description" content="Essence Nail Lounge, 157 Harding St, Worcester MA. Gel, Gel X, builder gel, acrylic, dip, pedicures, lash extensions, lash lift and waxing. Hand-painted nail art. 4.9 stars from 383 Google reviews. Book online, open Tuesday to Sunday.">
+<title>Essence Nail Lounge | Nail Art, Nails, Lashes &amp; Waxing in Worcester, MA</title>
+<meta name="description" content="Essence Nail Lounge, 157 Harding St, Worcester MA. Hand-painted nail art, Gel X, builder gel, acrylic, dip, pedicures, lash extensions, lash lift and waxing. See our work, then book online. 4.9 stars from 383 Google reviews. Open Tuesday to Sunday.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Shrikhand&family=Work+Sans:wght@400;500;600;700&display=swap">
 <style>
-/* Essence Nail Lounge — mixed references + their own look:
-   Lacquer Studio (Framer nail bar, free): "Open now" pill from real hours, italic kicker + big serif headline,
-   tinted category cards (Nails / Lashes / Waxing), team section.
-   Candyclaw (Framer nail studio): scrolling service ribbon, tilted sticker buttons, tilted "fresh sets" cards.
-   Brand from THEIR Instagram: blush pink fur, leaf-green plants, cherry red nail art, cream.
-   US nail-salon standard: real price menu + times (from their Booksy), Book buttons -> their Booksy, hours, team, gallery,
-   reviews, groups/bridal. */
+/* Essence Nail Lounge v2 — PORTFOLIO FIRST (user, Nov 24: the work is what gets people in; don't bury it).
+   Lacquer Studio (Framer nail bar): "nail-art wall" + "Open now" pill from real hours + serif headline.
+   Candyclaw (Framer nail studio): scrolling service ribbon, tilted stickers, playful kicker type.
+   Instagram-style portfolio: filter chips + masonry + lightbox with "Book this look".
+   Brand from their Instagram: blush pink fur, leaf green, cherry red. Real prices from their Booksy.
+   Images: only the sharpest originals; never shown bigger than their source. */
 :root {
   --blush: #f9dce2; --blush-d: #f2b9c6; --cherry: #c41e3a; --cherry-d: #9c1530; --leaf: #3c7a3e; --leaf-l: #e5f0e1;
-  --cream: #fff9f4; --ink: #2b1a1f; --mute: #6c5a5f; --line: #f0dfd9; --lilac: #ece3f6;
+  --cream: #fff9f4; --ink: #2b1a1f; --mute: #6c5a5f; --line: #f0dfd9;
   --serif: "Yeseva One", Georgia, serif; --fun: "Shrikhand", Georgia, serif; --body: "Work Sans", "Segoe UI", system-ui, sans-serif;
   color-scheme: light;
 }
@@ -30,20 +29,18 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--leaf); outline-offset: 3px; }
 section[id] { scroll-margin-top: 90px; }
-.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; line-height: 1.06; }
 .kick { font: 400 20px/1.2 var(--fun); color: var(--cherry); display: block; }
 .demo { background: var(--ink); color: #f3e6e9; font-size: 13px; text-align: center; padding: 7px 12px; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 600 16px/1 var(--body); padding: 16px 24px; border-radius: 999px; background: var(--cherry); color: #fff; text-decoration: none; border: 0; cursor: pointer; transition: transform .15s, background .15s; }
 .btn:hover { background: var(--cherry-d); transform: translateY(-2px); }
 .btn.out { background: #fff; color: var(--ink); border: 1.5px solid var(--ink); }
-.btn.sm { padding: 10px 16px; font-size: 14.5px; }
 
-/* Candyclaw ribbon */
 .ribbon { background: var(--cherry); color: #fff; overflow: hidden; white-space: nowrap; font: 600 13.5px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; padding: 10px 0; }
-.ribbon .track { display: inline-flex; gap: 26px; padding-left: 26px; animation: slide 30s linear infinite; }
+.ribbon .track { display: inline-flex; gap: 26px; padding-left: 26px; animation: slideX 30s linear infinite; }
 .ribbon .track span::after { content: "✦"; margin-left: 26px; color: var(--blush-d); }
-@keyframes slide { to { transform: translateX(-50%); } }
+@keyframes slideX { to { transform: translateX(-50%); } }
 
 header.top { position: sticky; top: 0; z-index: 40; padding: 10px 0; background: linear-gradient(var(--cream), rgba(255,249,244,.85)); }
 header.top .bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 8px 8px 20px; box-shadow: 0 10px 24px rgba(43,26,31,.06); }
@@ -63,82 +60,91 @@ header.top .bar { display: flex; align-items: center; justify-content: space-bet
 .scrim { display: none; position: fixed; inset: 0; z-index: 35; background: rgba(43,26,31,.35); }
 .scrim.open { display: block; }
 
-/* hero — Lacquer headline + photo with Candyclaw stickers */
-.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; align-items: center; padding-block: 34px 70px; }
+/* HERO: copy + nail-art wall (3 scrolling columns) */
+.hero .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; align-items: center; padding-block: 18px 40px; }
 .open { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; font: 600 14px/1 var(--body); }
 .open i { width: 8px; height: 8px; border-radius: 50%; background: var(--leaf); }
 .open.closed i { background: var(--mute); }
-.hero h1 { font-size: clamp(48px, 6.6vw, 92px); margin: 14px 0 18px; }
+.hero h1 { font-size: clamp(44px, 5vw, 72px); margin: 14px 0 16px; }
 .hero h1 em { font-style: normal; color: var(--cherry); }
-.hero p { margin: 0 0 26px; font-size: 19px; color: var(--mute); max-width: 44ch; }
+.hero p { margin: 0 0 24px; font-size: 18.5px; color: var(--mute); max-width: 40ch; }
 .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-.stars { margin-top: 24px; display: flex; gap: 12px; align-items: center; font: 600 15px/1.3 var(--body); }
+.stars { margin-top: 22px; display: flex; gap: 12px; align-items: center; font: 600 15px/1.3 var(--body); }
 .stars b { color: var(--cherry); letter-spacing: 2px; font-size: 18px; }
-.shot { position: relative; }
-.shot .frame { border-radius: 34px 34px 34px 140px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--blush); box-shadow: 0 30px 60px rgba(196,30,58,.18); }
-.shot .frame img { width: 100%; height: 100%; object-fit: cover; }
-.sticker { position: absolute; font: 600 14px/1.15 var(--body); text-align: center; box-shadow: 0 10px 22px rgba(43,26,31,.18); }
-.sticker.s1 { top: -14px; right: -10px; width: 118px; height: 118px; border-radius: 50%; background: var(--blush); display: grid; place-items: center; transform: rotate(10deg); border: 2px solid var(--cherry); color: var(--cherry); }
-.sticker.s1 b { display: block; font: 400 30px/1 var(--fun); }
-.sticker.s2 { left: -18px; bottom: 40px; background: var(--leaf); color: #fff; padding: 11px 16px; border-radius: 999px; transform: rotate(-6deg); }
+.wall { position: relative; height: min(640px, 78vh); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; overflow: hidden; border-radius: 30px; mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent); }
+.col { display: flex; flex-direction: column; gap: 12px; animation: up 46s linear infinite; }
+.col.c2 { animation-name: down; animation-duration: 52s; }
+.col.c3 { animation-duration: 40s; }
+.wall:hover .col { animation-play-state: paused; }
+@keyframes up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+.tile { all: unset; display: block; cursor: zoom-in; border-radius: 20px; overflow: hidden; background: var(--blush); }
+.tile img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.tile:focus-visible { outline: 3px solid var(--leaf); outline-offset: 2px; }
+.wall .badge { position: absolute; z-index: 2; left: 14px; bottom: 22px; background: var(--leaf); color: #fff; font: 600 14px/1 var(--body); padding: 11px 15px; border-radius: 999px; transform: rotate(-4deg); box-shadow: 0 10px 22px rgba(0,0,0,.2); pointer-events: none; }
+.wall .seal { position: absolute; z-index: 2; right: 14px; top: 22px; width: 104px; height: 104px; border-radius: 50%; background: var(--blush); border: 2px solid var(--cherry); color: var(--cherry); display: grid; place-items: center; text-align: center; font: 600 13px/1.15 var(--body); transform: rotate(10deg); pointer-events: none; box-shadow: 0 10px 22px rgba(0,0,0,.15); }
+.wall .seal b { display: block; font: 400 26px/1 var(--fun); }
 
-/* categories (Lacquer tinted cards) */
-.cats .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.cat { border-radius: 30px; padding: 12px 12px 24px; min-width: 0; }
-.cat:nth-child(1) { background: var(--blush); } .cat:nth-child(2) { background: var(--lilac); } .cat:nth-child(3) { background: var(--leaf-l); }
-.cat img { width: 100%; aspect-ratio: 4 / 3.3; object-fit: cover; border-radius: 22px; }
-.lashart { aspect-ratio: 4 / 3.3; border-radius: 22px; background: radial-gradient(circle at 30% 30%, #fff 0 18%, transparent 19%), linear-gradient(135deg, #d9c8f0, #f6e9ff); display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 10px; padding: 20px; }
-.lashart span { font: 400 20px/1 var(--fun); color: #6b4a96; background: #fff; padding: 12px 16px; border-radius: 999px; }
-.cat h3 { font-size: 32px; margin: 16px 12px 6px; }
-.cat p { margin: 0 12px; color: var(--mute); }
-.sh { margin-bottom: 34px; }
+/* PORTFOLIO */
+section { padding-block: clamp(56px, 7vw, 92px); }
+.sh { margin-bottom: 26px; }
 .sh h2 { font-size: clamp(38px, 5vw, 62px); margin-top: 6px; }
-.sh p { color: var(--mute); font-size: 18px; margin: 12px 0 0; max-width: 56ch; }
-section { padding-block: clamp(60px, 8vw, 100px); }
+.sh p { color: var(--mute); font-size: 18px; margin: 10px 0 0; max-width: 56ch; }
+.port { padding-top: 30px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+.chips button { font: 600 15px/1 var(--body); padding: 11px 17px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; }
+.chips button small { color: var(--mute); font-weight: 500; margin-left: 4px; }
+.chips button[aria-pressed="true"] { background: var(--cherry); border-color: var(--cherry); color: #fff; }
+.chips button[aria-pressed="true"] small { color: var(--blush); }
+.masonry { columns: 4 240px; column-gap: 14px; }
+.masonry .tile { margin-bottom: 14px; break-inside: avoid; position: relative; }
+.masonry .tile img { aspect-ratio: auto; }
+.masonry .tile span { position: absolute; left: 10px; bottom: 10px; background: rgba(255,255,255,.93); font: 600 12.5px/1 var(--body); padding: 7px 10px; border-radius: 999px; }
+.masonry .tile[hidden] { display: none; }
+.port .cta { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
 
-/* price menu (US standard, real Booksy prices) */
+dialog.lb { border: 0; padding: 0; border-radius: 24px; width: min(520px, 94vw); max-height: 94vh; overflow: hidden; background: #fff; }
+dialog.lb::backdrop { background: rgba(20,10,13,.82); }
+.lb .pic { position: relative; background: #1b1013; }
+.lb .pic img { width: 100%; max-height: 72vh; object-fit: contain; margin: 0 auto; }
+.lb .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); font: 700 22px/1 var(--body); cursor: pointer; }
+.lb .prev { left: 10px; } .lb .next { right: 10px; }
+.lb .x { position: absolute; right: 10px; top: 10px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); font: 600 20px/1 var(--body); cursor: pointer; }
+.lb .bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; flex-wrap: wrap; }
+.lb .bar b { font: 400 20px/1.2 var(--fun); color: var(--cherry); }
+.lb .bar small { display: block; color: var(--mute); font-size: 13.5px; }
+.lb .bar .btn { padding: 12px 18px; font-size: 15px; }
+
+/* prices (real Booksy) */
 .menu { background: #fff; }
-.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
 .tabs button { font: 600 15px/1 var(--body); padding: 11px 18px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--cream); cursor: pointer; color: var(--ink); }
 .tabs button[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
 .plist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
-.item { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.item { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; padding: 15px 0; border-bottom: 1px dashed var(--line); }
 .item b { font: 600 17.5px/1.3 var(--body); }
 .item span.price { font: 400 22px/1 var(--serif); color: var(--cherry); }
 .item small { color: var(--mute); font-size: 14px; }
 .item a { justify-self: end; font: 600 14px/1 var(--body); color: var(--leaf); text-decoration: none; }
 .item a:hover { text-decoration: underline; }
-.menu .note { margin-top: 20px; color: var(--mute); font-size: 15px; }
+.menu .note { margin-top: 18px; color: var(--mute); font-size: 15px; }
 
-/* Candyclaw fresh sets (tilted cards) */
-.sets { background: var(--blush); }
-.sets .row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
-.set { margin: 0; background: #fff; padding: 10px 10px 14px; border-radius: 22px; box-shadow: 0 14px 30px rgba(196,30,58,.14); min-width: 0; transition: transform .2s; }
-.set:nth-child(odd) { transform: rotate(-2.5deg); } .set:nth-child(even) { transform: rotate(2.5deg); }
-.set:hover { transform: rotate(0) scale(1.03); }
-.set img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; }
-.set figcaption { font: 400 18px/1.2 var(--fun); color: var(--cherry); text-align: center; margin-top: 10px; }
-.more { display: flex; justify-content: center; margin-top: 30px; }
-
-/* team + groups */
 .team .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 .names { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 .names span { font: 400 20px/1 var(--fun); color: var(--cherry); background: #fff; border: 1.5px solid var(--line); padding: 12px 18px; border-radius: 999px; }
 .names span:nth-child(3n+2) { color: var(--leaf); } .names span:nth-child(3n) { color: var(--ink); }
-.bridal { position: relative; }
+.bridal { position: relative; max-width: 520px; justify-self: center; width: 100%; }
 .bridal img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 30px; }
 .bridal .card { position: absolute; left: 16px; right: 16px; bottom: 16px; background: rgba(255,255,255,.95); border-radius: 20px; padding: 16px 18px; }
 .bridal .card b { font: 400 24px/1.1 var(--serif); display: block; }
 .bridal .card span { color: var(--mute); font-size: 15px; }
 
-/* reviews */
 .rgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .rv-card { margin: 0; background: #fff; border-radius: 26px; padding: 26px; border: 1px solid var(--line); }
 .rv-card .st { color: var(--cherry); letter-spacing: 3px; }
 .rv-card p { font: 400 21px/1.35 var(--serif); margin: 10px 0 12px; }
 .rv-card cite { font-style: normal; font-size: 14px; color: var(--mute); }
 
-/* visit */
 .visit { background: var(--ink); color: #fff; }
 .visit .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 .visit h2 { font-size: clamp(38px, 5vw, 60px); margin: 6px 0 14px; }
@@ -162,21 +168,29 @@ footer b { font: 400 28px/1 var(--fun); color: var(--blush-d); display: block; m
 @media (max-width: 1000px) {
   .top nav { display: none; } .menu-btn { display: inline-flex; }
   .hero .wrap, .team .grid, .visit .grid { grid-template-columns: minmax(0, 1fr); }
-  .shot { max-width: 460px; width: 100%; margin: 10px auto 0; }
-  .cats .grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .plist { grid-template-columns: minmax(0, 1fr); }
-  .sets .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rgrid { grid-template-columns: minmax(0, 1fr); }
+  /* wall becomes two horizontal scrolling rows */
+  .wall { height: auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; border-radius: 0; margin-inline: -20px; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .col { flex-direction: row; width: max-content; animation-name: left; gap: 10px; }
+  .col.c2 { animation-name: right; } .col.c3 { display: none; }
+  .col .tile { width: 168px; flex: none; }
+  @keyframes left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .wall .seal { top: 8px; right: 22px; width: 86px; height: 86px; font-size: 11.5px; } .wall .seal b { font-size: 21px; }
+  .wall .badge { bottom: 8px; left: 28px; }
+  /* phones/tablets: headline -> photo wall -> text -> buttons (work first) */
+  .hero .wrap { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .hero .copy { display: contents; }
+  .hero .open { order: 1; align-self: flex-start; } .hero h1 { order: 2; } .hero .wall { order: 3; margin-bottom: 22px; }
+  .hero p { order: 4; } .hero .ctas { order: 5; } .hero .stars { order: 6; }
 }
 @media (max-width: 640px) {
   .brand b { font-size: 21px; } .brand small { display: none; }
-  .hero h1 { font-size: 46px; }
+  .hero h1 { font-size: 42px; }
   .hero p { font-size: 17.5px; }
   .ctas .btn { flex: 1 1 100%; }
-  .sticker.s1 { right: 6px; width: 96px; height: 96px; font-size: 12.5px; } .sticker.s1 b { font-size: 24px; }
-  .sticker.s2 { left: 8px; }
-  .sets .row { gap: 12px; }
-  .item { grid-template-columns: 1fr auto; }
+  .masonry { columns: 2; column-gap: 10px; } .masonry .tile { margin-bottom: 10px; }
   .dock { display: flex; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } .rv { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
@@ -185,75 +199,63 @@ footer b { font: 400 28px/1 var(--fun); color: var(--blush-d); display: block; m
 </head>
 <body>
 
-<div class="demo">Demo website made for Essence Nail Lounge. Prices from your Booksy page.</div>
-<div class="ribbon" aria-hidden="true"><div class="track"><span>Gel X</span><span>Builder gel</span><span>Acrylic</span><span>Dip powder</span><span>Nail art</span><span>Pedicures</span><span>Lash extensions</span><span>Lash lift</span><span>Waxing</span><span>Gel X</span><span>Builder gel</span><span>Acrylic</span><span>Dip powder</span><span>Nail art</span><span>Pedicures</span><span>Lash extensions</span><span>Lash lift</span><span>Waxing</span></div></div>
+<div class="demo">Demo website made for Essence Nail Lounge. Photos from your Instagram, prices from your Booksy.</div>
+<div class="ribbon" aria-hidden="true"><div class="track"><span>Nail art</span><span>Gel X</span><span>Builder gel</span><span>Acrylic</span><span>Dip powder</span><span>Pedicures</span><span>Lash extensions</span><span>Lash lift</span><span>Waxing</span><span>Nail art</span><span>Gel X</span><span>Builder gel</span><span>Acrylic</span><span>Dip powder</span><span>Pedicures</span><span>Lash extensions</span><span>Lash lift</span><span>Waxing</span></div></div>
 
 <header class="top"><div class="wrap"><div class="bar">
   <a class="brand" href="#top" aria-label="Essence Nail Lounge home"><b>Essence</b><small>Nail Lounge</small></a>
-  <nav aria-label="Primary"><a href="#menu">Prices</a><a href="#sets">Nail art</a><a href="#team">Team</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book now</a></nav>
+  <nav aria-label="Primary"><a href="#work">Our work</a><a href="#menu">Prices</a><a href="#team">Team</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book now</a></nav>
   <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="drop"><i><b></b><b></b><b></b></i>Menu</button>
 </div></div></header>
 <div class="scrim" id="scrim"></div>
-<nav class="drop" id="drop" aria-label="Menu"><a href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book now</a><a href="#menu">Prices</a><a href="#sets">Nail art</a><a href="#team">Team</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+<nav class="drop" id="drop" aria-label="Menu"><a href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book now</a><a href="#work">Our work</a><a href="#menu">Prices</a><a href="#team">Team</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
 
 <div class="hero" id="top"><div class="wrap">
-  <div>
+  <div class="copy">
     <span class="open rv" id="open"><i></i><span id="openTxt">Open Tuesday – Sunday</span></span>
-    <h1 class="rv">Nails with <em>personality.</em></h1>
-    <p class="rv">Gel X, builder gel, acrylic and hand-painted nail art, plus lash extensions and waxing, on Harding Street in Worcester. Come in for a fresh set, leave with a little art on every finger.</p>
-    <div class="ctas rv"><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book your appointment</a><a class="btn out" href="#menu">See prices</a></div>
+    <h1 class="rv">Nail art with <em>personality.</em></h1>
+    <p class="rv">Hand-painted sets, Gel X, builder gel and acrylic, plus lashes and waxing, on Harding Street in Worcester. Find a set you love below, then book it.</p>
+    <div class="ctas rv"><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book your appointment</a><a class="btn out" href="#work">Browse our work</a></div>
     <div class="stars rv"><b>★★★★★</b><span>4.9 from 383 Google reviews</span></div>
   </div>
-  <div class="shot rv">
-    <div class="frame"><img src="img/hero.webp" alt="Cherry and leopard nail art set on long almond nails" width="900" height="1100"></div>
-    <div class="sticker s1" aria-hidden="true"><span><b>4.9★</b>383 reviews</span></div>
-    <div class="sticker s2">Hand-painted nail art ✦</div>
+  <div class="wall" id="wall" aria-label="Recent nail art">
+    <div class="col c1"></div><div class="col c2"></div><div class="col c3"></div>
+    <div class="seal" aria-hidden="true"><span><b>4.9★</b>383 reviews</span></div>
+    <div class="badge">All hand-painted here ✦</div>
   </div>
 </div></div>
 
-<section class="cats" style="padding-top:20px"><div class="wrap">
-  <div class="sh rv"><span class="kick">Nails, lashes, waxing</span><h2>What are you in for?</h2></div>
-  <div class="grid">
-    <article class="cat rv"><img src="img/g3.webp" alt="Almond nails with blue swirl French tips" loading="lazy"><h3>Nails</h3><p>Gel, Gel X, builder gel, acrylic and dip, with nail art as simple or as wild as you like.</p></article>
-    <article class="cat rv"><div class="lashart" aria-hidden="true"><span>lash lift</span><span>classic set</span><span>2-week fill</span></div><h3>Lashes</h3><p>Classic lash extensions, fills and lash lifts for a wide-awake look.</p></article>
-    <article class="cat rv"><img src="img/pedi.webp" alt="Matching manicure and pedicure with French tips" loading="lazy"><h3>Pedicures &amp; waxing</h3><p>Basic, gel and deluxe spa pedicures, plus quick, clean waxing.</p></article>
-  </div>
+<section class="port" id="work"><div class="wrap">
+  <div class="sh rv"><span class="kick">Our work</span><h2>Pick your next set</h2><p>Every photo was done at Essence. Tap one to see it up close, then book it.</p></div>
+  <div class="chips" id="chips" role="group" aria-label="Filter nail art"></div>
+  <div class="masonry" id="grid"></div>
+  <div class="cta"><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book a set</a><a class="btn out" href="https://www.instagram.com/essencenaillounge_/" target="_blank" rel="noopener">More on Instagram</a></div>
 </div></section>
 
+<dialog class="lb" id="lb" aria-label="Nail art photo">
+  <div class="pic"><img id="lbImg" alt=""><button class="nav prev" type="button" id="lbPrev" aria-label="Previous photo">‹</button><button class="nav next" type="button" id="lbNext" aria-label="Next photo">›</button><button class="x" type="button" id="lbX" aria-label="Close">✕</button></div>
+  <div class="bar"><div><b id="lbCat">Nail art</b><small>Done at Essence · show this photo when you book</small></div><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book this look</a></div>
+</dialog>
+
 <section class="menu" id="menu"><div class="wrap">
-  <div class="sh rv"><span class="kick">The menu</span><h2>Prices</h2><p>Straight from our booking page. Nail art and longer lengths may add to the price; we'll always tell you before we start.</p></div>
+  <div class="sh rv"><span class="kick">The menu</span><h2>Prices</h2><p>From our booking page. Nail art and extra length may add to the price, and we'll always tell you before we start.</p></div>
   <div class="tabs rv" role="tablist" aria-label="Price categories" id="tabs">
     <button role="tab" aria-selected="true" data-t="nails">Nails</button><button role="tab" aria-selected="false" data-t="pedi">Pedicures</button><button role="tab" aria-selected="false" data-t="lash">Lashes</button><button role="tab" aria-selected="false" data-t="wax">Waxing &amp; extras</button>
   </div>
   <div class="plist rv" id="plist" role="tabpanel"></div>
-  <p class="note rv">Payment by card accepted. Kids welcome.</p>
-</div></section>
-
-<section class="sets" id="sets"><div class="wrap">
-  <div class="sh rv" style="text-align:center;margin-inline:auto"><span class="kick">Fresh from the lounge</span><h2>Recent sets</h2></div>
-  <div class="row">
-    <figure class="set rv"><img src="img/g5.webp" alt="Pastel sets with polka dots and mini characters" loading="lazy"><figcaption>Sweet treats</figcaption></figure>
-    <figure class="set rv"><img src="img/g6.webp" alt="Strawberry nail art on white" loading="lazy"><figcaption>Strawberry</figcaption></figure>
-    <figure class="set rv"><img src="img/g4.webp" alt="Floral almond nails with gems" loading="lazy"><figcaption>Spring florals</figcaption></figure>
-    <figure class="set rv"><img src="img/g7.webp" alt="Cherry and teddy bear nail art" loading="lazy"><figcaption>Cherry bear</figcaption></figure>
-    <figure class="set rv"><img src="img/g9.webp" alt="Ocean and fish themed nail art" loading="lazy"><figcaption>Ocean</figcaption></figure>
-    <figure class="set rv"><img src="img/g8.webp" alt="Pastel unicorn nail set" loading="lazy"><figcaption>Unicorn</figcaption></figure>
-    <figure class="set rv"><img src="img/g11.webp" alt="Red swirl and stars Halloween nail set" loading="lazy"><figcaption>Spooky season</figcaption></figure>
-    <figure class="set rv"><img src="img/french.webp" alt="Pink French tips with gems" loading="lazy"><figcaption>Pink French</figcaption></figure>
-  </div>
-  <div class="more rv"><a class="btn" href="https://www.instagram.com/essencenaillounge_/" target="_blank" rel="noopener">See more on Instagram</a></div>
+  <p class="note rv">Cards accepted. Kids welcome.</p>
 </div></section>
 
 <section class="team" id="team"><div class="wrap grid">
   <div>
     <span class="kick rv">Meet the team</span>
     <h2 class="rv" style="font-size:clamp(38px,5vw,60px);margin-top:6px">Friendly hands, steady lines.</h2>
-    <p class="rv" style="color:var(--mute);font-size:18px">Our nail techs know their way around every shape, length and design. Pick your favourite when you book.</p>
+    <p class="rv" style="color:var(--mute);font-size:18px">Our nail techs know every shape, length and design. Pick your favourite when you book.</p>
     <div class="names rv"><span>Cindi</span><span>Coco</span><span>Rosie</span><span>Destiny</span><span>Sophia</span><span>Ally</span></div>
   </div>
   <div class="bridal rv">
-    <img src="img/bridal.webp" alt="A bridal party showing matching manicures around a BRIDE hat" loading="lazy">
-    <div class="card"><b>Bridal &amp; group sets</b><span>Getting ready together? Book the whole crew for matching (or not) nails.</span></div>
+    <img src="img/w/28.webp" alt="A bridal party showing their manicures around a BRIDE hat" loading="lazy">
+    <div class="card"><b>Bridal &amp; group sets</b><span>Getting ready together? Book the whole crew.</span></div>
   </div>
 </div></section>
 
@@ -291,6 +293,35 @@ footer b { font: 400 28px/1 var(--fun); color: var(--blush-d); display: block; m
 <script>
 (() => {
   const BOOK = 'https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester';
+  const CAT = { cute: 'Cute & characters', flor: 'Florals', fr: 'French', bold: 'Bold & chrome', szn: 'Seasonal', min: 'Minimal', grp: 'Groups' };
+  // photo id -> style family (sorted by eye from their Instagram)
+  const W = [[5,'cute'],[0,'min'],[2,'bold'],[25,'cute'],[11,'flor'],[10,'fr'],[22,'bold'],[29,'cute'],[18,'flor'],[34,'szn'],[14,'fr'],[6,'bold'],[23,'cute'],[19,'flor'],[31,'szn'],[1,'fr'],[30,'bold'],[24,'cute'],[7,'flor'],[26,'fr'],[33,'szn'],[12,'cute'],[4,'bold'],[16,'min'],[32,'szn'],[15,'fr'],[35,'bold'],[8,'min'],[27,'szn'],[17,'fr'],[28,'grp']];
+  const byK = Object.fromEntries(W);
+  // hero wall: sharpest + most colourful sets, 3 columns (duplicated for a seamless loop)
+  const cols = [[0,2,6,10,5],[22,23,31,25,29],[34,26,1,30,11]];
+  const wall = document.querySelectorAll('#wall .col');
+  const tile = (k, lazy) => '<button class="tile" type="button" data-k="' + k + '" aria-label="View ' + CAT[byK[k]] + ' set"><img src="img/w/' + k + '.webp" alt="' + CAT[byK[k]] + ' nail set at Essence"' + (lazy ? ' loading="lazy"' : '') + '></button>';
+  cols.forEach((c, i) => { wall[i].innerHTML = (c.map(k => tile(k, false)).join('')).repeat(2); });
+  // portfolio
+  const grid = document.getElementById('grid'), chips = document.getElementById('chips');
+  grid.innerHTML = W.map(([k, c]) => tile(k, true).replace('</button>', '<span>' + CAT[c] + '</span></button>')).join('');
+  const count = c => W.filter(w => c === 'all' || w[1] === c).length;
+  chips.innerHTML = ['all', 'cute', 'flor', 'fr', 'bold', 'szn', 'min'].map(c => '<button type="button" data-f="' + c + '" aria-pressed="' + (c === 'all') + '">' + (c === 'all' ? 'All' : CAT[c]) + '<small>' + count(c) + '</small></button>').join('');
+  let current = W.map(w => w[0]);
+  chips.onclick = e => { const b = e.target.closest('button'); if (!b) return; const f = b.dataset.f;
+    chips.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    grid.querySelectorAll('.tile').forEach(t => t.hidden = !(f === 'all' || byK[+t.dataset.k] === f));
+    current = W.filter(w => f === 'all' || w[1] === f).map(w => w[0]); };
+  // lightbox (from wall or grid)
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'); let at = null;
+  const open = k => { at = k; lbImg.src = 'img/f/' + k + '.webp'; lbImg.alt = CAT[byK[k]] + ' nail set at Essence'; document.getElementById('lbCat').textContent = CAT[byK[k]]; if (!lb.open) lb.showModal(); };
+  document.addEventListener('click', e => { const t = e.target.closest('.tile'); if (t) { if (t.closest('#wall')) current = W.map(w => w[0]); open(+t.dataset.k); } });
+  const step = d => { const i = current.indexOf(at); open(current[(i + d + current.length) % current.length]); };
+  document.getElementById('lbPrev').onclick = () => step(-1); document.getElementById('lbNext').onclick = () => step(1);
+  document.getElementById('lbX').onclick = () => lb.close();
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') step(-1); if (e.key === 'ArrowRight') step(1); });
+  // prices
   const P = {
     nails: [['Manicure', '30 min', '$38'], ['Gel manicure', '30 min', '$52'], ['Gel X', '45 min', '$68'], ['Dip powder', '1 hr', '$65'], ['Acrylic full set', '1 hr', '$60'], ['Acrylic fill', '45 min', '$45'], ['Builder gel full set', '1 hr', '$85'], ['Builder gel fill', '1 hr', '$70']],
     pedi: [['Pedicure, basic', '40 min', '$60'], ['Gel pedicure', '45 min', '$75'], ['Deluxe spa pedicure', '45 min', '$75']],
@@ -298,18 +329,16 @@ footer b { font: 400 28px/1 var(--fun); color: var(--blush-d); display: block; m
     wax: [['Waxing', 'from 5 min', 'from $22'], ['Soak off only', '15 min', '$20']]
   };
   const pl = document.getElementById('plist');
-  function show(t) {
-    document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.t === t));
-    pl.innerHTML = P[t].map(([n, d, p]) => '<div class="item"><b>' + n + '</b><span class="price">' + p + '</span><small>' + d + '</small><a href="' + BOOK + '" target="_blank" rel="noopener">Book →</a></div>').join('');
-  }
+  const show = t => { document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.t === t));
+    pl.innerHTML = P[t].map(([n, d, p]) => '<div class="item"><b>' + n + '</b><span class="price">' + p + '</span><small>' + d + '</small><a href="' + BOOK + '" target="_blank" rel="noopener">Book →</a></div>').join(''); };
   document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => show(b.dataset.t)); show('nails');
-  // open now (Worcester time)
+  // open now
   const H = { 0: [10, 16], 2: [10, 17], 3: [10, 17], 4: [10, 18.5], 5: [9.5, 18.5], 6: [9.5, 17] };
   const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })), d = now.getDay(), h = now.getHours() + now.getMinutes() / 60;
   const fmt = x => { const hh = Math.floor(x), mm = Math.round((x - hh) * 60); return (hh > 12 ? hh - 12 : hh) + (mm ? ':' + String(mm).padStart(2, '0') : '') + (hh >= 12 ? ' PM' : ' AM'); };
-  const o = document.getElementById('open'), t = document.getElementById('openTxt');
-  if (H[d] && h >= H[d][0] && h < H[d][1]) t.textContent = 'Open now · until ' + fmt(H[d][1]);
-  else { o.classList.add('closed'); t.textContent = 'Closed now · open Tuesday – Sunday'; }
+  const o = document.getElementById('open'), ot = document.getElementById('openTxt');
+  if (H[d] && h >= H[d][0] && h < H[d][1]) ot.textContent = 'Open now · until ' + fmt(H[d][1]);
+  else { o.classList.add('closed'); ot.textContent = 'Closed now · open Tuesday – Sunday'; }
   const today = document.querySelector('#hours [data-d="' + d + '"]'); if (today) today.classList.add('today');
   const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .06 }) : null;
   document.querySelectorAll('.rv').forEach(el => io ? io.observe(el) : el.classList.add('in'));
