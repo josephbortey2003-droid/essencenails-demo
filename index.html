@@ -229,7 +229,7 @@ footer b { font: 400 28px/1 var(--fun); color: var(--blush-d); display: block; m
   <div class="sh rv"><span class="kick">Our work</span><h2>Pick your next set</h2><p>Every photo was done at Essence. Tap one to see it up close, then book it.</p></div>
   <div class="chips" id="chips" role="group" aria-label="Filter nail art"></div>
   <div class="masonry" id="grid"></div>
-  <div class="cta"><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book a set</a><a class="btn out" href="https://www.instagram.com/essencenaillounge_/" target="_blank" rel="noopener">More on Instagram</a></div>
+  <div class="cta"><button class="btn out" type="button" id="moreBtn">Show all 31 sets</button><a class="btn" href="https://booksy.com/en-us/1264817_essence-nail-lounge_nail-salon_22513_worcester" target="_blank" rel="noopener">Book a set</a><a class="btn out" href="https://www.instagram.com/essencenaillounge_/" target="_blank" rel="noopener">More on Instagram</a></div>
 </div></section>
 
 <dialog class="lb" id="lb" aria-label="Nail art photo">
@@ -308,10 +308,17 @@ footer b { font: 400 28px/1 var(--fun); color: var(--blush-d); display: block; m
   const count = c => W.filter(w => c === 'all' || w[1] === c).length;
   chips.innerHTML = ['all', 'cute', 'flor', 'fr', 'bold', 'szn', 'min'].map(c => '<button type="button" data-f="' + c + '" aria-pressed="' + (c === 'all') + '">' + (c === 'all' ? 'All' : CAT[c]) + '<small>' + count(c) + '</small></button>').join('');
   let current = W.map(w => w[0]);
-  chips.onclick = e => { const b = e.target.closest('button'); if (!b) return; const f = b.dataset.f;
-    chips.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    grid.querySelectorAll('.tile').forEach(t => t.hidden = !(f === 'all' || byK[+t.dataset.k] === f));
-    current = W.filter(w => f === 'all' || w[1] === f).map(w => w[0]); };
+  const moreBtn = document.getElementById('moreBtn'); let expanded = false, filt = 'all';
+  function apply() {
+    let n = 0;
+    grid.querySelectorAll('.tile').forEach(t => { const ok = filt === 'all' || byK[+t.dataset.k] === filt; if (ok) n++; t.hidden = !ok || (filt === 'all' && !expanded && n > 12); });
+    moreBtn.style.display = filt === 'all' && !expanded ? '' : 'none';
+    current = W.filter(w => filt === 'all' || w[1] === filt).map(w => w[0]);
+  }
+  moreBtn.onclick = () => { expanded = true; apply(); };
+  chips.onclick = e => { const b = e.target.closest('button'); if (!b) return; filt = b.dataset.f;
+    chips.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); apply(); };
+  apply();
   // lightbox (from wall or grid)
   const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'); let at = null;
   const open = k => { at = k; lbImg.src = 'img/f/' + k + '.webp'; lbImg.alt = CAT[byK[k]] + ' nail set at Essence'; document.getElementById('lbCat').textContent = CAT[byK[k]]; if (!lb.open) lb.showModal(); };
